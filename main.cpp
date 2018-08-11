@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 	ioctl(fd, SIOCGIFADDR, &ifr);
 	close(fd);
 	memcpy(attacker_ip, &((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr, 4);
-	send_arp(packet, attacker_mac, (u_char*)"\x00\x00\x00\x00\x00\x00", attacker_ip, target_ip, 'q'); //Get Victim's Mac_addr
+	send_arp(packet, attacker_mac, (u_char*)"\x00\x00\x00\x00\x00\x00", attacker_ip, sender_ip, 'q'); //Get Victim's Mac_addr
 	while (true) {
 		pcap_sendpacket(handle, packet, PACKET_SIZE);
 		struct pcap_pkthdr* header;
